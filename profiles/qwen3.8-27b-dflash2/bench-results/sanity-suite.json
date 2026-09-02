@@ -1,0 +1,60 @@
+{
+  "tag": "r0b0-dflash2-256k",
+  "base_url": "http://127.0.0.1:8888",
+  "passed": 8,
+  "total": 8,
+  "all_ok": true,
+  "checks": [
+    {
+      "name": "arith_437_thinkoff",
+      "ok": true,
+      "detail": "437"
+    },
+    {
+      "name": "arith_437_thinkon",
+      "ok": true,
+      "detail": "\n\n437"
+    },
+    {
+      "name": "exact_string",
+      "ok": true,
+      "detail": "BANANA"
+    },
+    {
+      "name": "word_problem_80",
+      "ok": true,
+      "detail": "80"
+    },
+    {
+      "name": "code_shape",
+      "ok": true,
+      "detail": "```python\ndef fib(n):\n    if n < 0:\n        raise ValueError(\"n must be non-nega"
+    },
+    {
+      "name": "tool_call_get_weather",
+      "ok": true,
+      "detail": [
+        {
+          "id": "call_c60402e9f1e146fea3474b14",
+          "index": 0,
+          "type": "function",
+          "function": {
+            "name": "get_weather",
+            "arguments": "{\"city\": \"Tokyo\"}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "long_gen_2k",
+      "ok": true,
+      "detail": "completion_tokens=2777 finish=stop"
+    },
+    {
+      "name": "repeat_deterministic",
+      "ok": true,
+      "detail": "identical"
+    }
+  ],
+  "timestamp": "2026-08-21T07:44:27Z"
+}

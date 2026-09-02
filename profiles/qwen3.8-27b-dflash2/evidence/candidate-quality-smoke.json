@@ -1,0 +1,324 @@
+{
+  "model": "qwen38-27b-radixark-dflash2",
+  "total": 20,
+  "passed": 20,
+  "pass": true,
+  "rows": [
+    {
+      "kind": "arithmetic",
+      "i": 0,
+      "text": "391",
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 56,
+        "total_tokens": 60,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null,
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "arithmetic",
+      "i": 1,
+      "text": "391",
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 56,
+        "total_tokens": 60,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null,
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "arithmetic",
+      "i": 2,
+      "text": "391",
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 52,
+        "total_tokens": 56,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null,
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "arithmetic",
+      "i": 3,
+      "text": "391",
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 55,
+        "total_tokens": 59,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null,
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "arithmetic",
+      "i": 4,
+      "text": "391",
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 53,
+        "total_tokens": 57,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null,
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "arithmetic",
+      "i": 5,
+      "text": "391",
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 57,
+        "total_tokens": 61,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null,
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "arithmetic",
+      "i": 6,
+      "text": "391",
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 56,
+        "total_tokens": 60,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null,
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "arithmetic",
+      "i": 7,
+      "text": "391",
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 54,
+        "total_tokens": 58,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null,
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "arithmetic",
+      "i": 8,
+      "text": "391",
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 57,
+        "total_tokens": 61,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null,
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "arithmetic",
+      "i": 9,
+      "text": "391",
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 57,
+        "total_tokens": 61,
+        "completion_tokens": 4,
+        "prompt_tokens_details": null,
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "tool",
+      "i": 0,
+      "args": {
+        "city": "Istanbul",
+        "unit": "celsius"
+      },
+      "call_count": 1,
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 345,
+        "total_tokens": 385,
+        "completion_tokens": 40,
+        "prompt_tokens_details": null,
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "tool",
+      "i": 1,
+      "args": {
+        "city": "Istanbul",
+        "unit": "celsius"
+      },
+      "call_count": 1,
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 347,
+        "total_tokens": 387,
+        "completion_tokens": 40,
+        "prompt_tokens_details": null,
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "tool",
+      "i": 2,
+      "args": {
+        "city": "Istanbul",
+        "unit": "celsius"
+      },
+      "call_count": 1,
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 344,
+        "total_tokens": 384,
+        "completion_tokens": 40,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "tool",
+      "i": 3,
+      "args": {
+        "city": "Istanbul",
+        "unit": "celsius"
+      },
+      "call_count": 1,
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 349,
+        "total_tokens": 389,
+        "completion_tokens": 40,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "tool",
+      "i": 4,
+      "args": {
+        "city": "Istanbul",
+        "unit": "celsius"
+      },
+      "call_count": 1,
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 344,
+        "total_tokens": 384,
+        "completion_tokens": 40,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "tool",
+      "i": 5,
+      "args": {
+        "city": "Istanbul",
+        "unit": "celsius"
+      },
+      "call_count": 1,
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 344,
+        "total_tokens": 384,
+        "completion_tokens": 40,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "tool",
+      "i": 6,
+      "args": {
+        "city": "Istanbul",
+        "unit": "celsius"
+      },
+      "call_count": 1,
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 344,
+        "total_tokens": 384,
+        "completion_tokens": 40,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "tool",
+      "i": 7,
+      "args": {
+        "city": "Istanbul",
+        "unit": "celsius"
+      },
+      "call_count": 1,
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 348,
+        "total_tokens": 388,
+        "completion_tokens": 40,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "tool",
+      "i": 8,
+      "args": {
+        "city": "Istanbul",
+        "unit": "celsius"
+      },
+      "call_count": 1,
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 346,
+        "total_tokens": 386,
+        "completion_tokens": 40,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "reasoning_tokens": 0
+      }
+    },
+    {
+      "kind": "tool",
+      "i": 9,
+      "args": {
+        "city": "Istanbul",
+        "unit": "celsius"
+      },
+      "call_count": 1,
+      "pass": true,
+      "usage": {
+        "prompt_tokens": 346,
+        "total_tokens": 386,
+        "completion_tokens": 40,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "reasoning_tokens": 0
+      }
+    }
+  ]
+}

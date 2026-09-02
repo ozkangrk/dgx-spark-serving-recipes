@@ -1,0 +1,149 @@
+{
+  "samples": [
+    {
+      "i": 1,
+      "time_utc": "2026-08-21T07:57:39.574601+00:00",
+      "health_status": 200,
+      "running": true,
+      "oom_killed": false,
+      "exit_code": 0,
+      "restart_count": 0,
+      "gpu_util_pct": 41.0,
+      "power_w": 14.97,
+      "temp_c": 57.0
+    },
+    {
+      "i": 2,
+      "time_utc": "2026-08-21T07:57:55.627181+00:00",
+      "health_status": 200,
+      "running": true,
+      "oom_killed": false,
+      "exit_code": 0,
+      "restart_count": 0,
+      "gpu_util_pct": 92.0,
+      "power_w": 14.64,
+      "temp_c": 56.0
+    },
+    {
+      "i": 3,
+      "time_utc": "2026-08-21T07:58:11.677849+00:00",
+      "health_status": 200,
+      "running": true,
+      "oom_killed": false,
+      "exit_code": 0,
+      "restart_count": 0,
+      "gpu_util_pct": 95.0,
+      "power_w": 14.27,
+      "temp_c": 55.0
+    },
+    {
+      "i": 4,
+      "time_utc": "2026-08-21T07:58:27.731232+00:00",
+      "health_status": 200,
+      "running": true,
+      "oom_killed": false,
+      "exit_code": 0,
+      "restart_count": 0,
+      "gpu_util_pct": 95.0,
+      "power_w": 14.13,
+      "temp_c": 54.0
+    },
+    {
+      "i": 5,
+      "time_utc": "2026-08-21T07:58:43.795846+00:00",
+      "health_status": 200,
+      "running": true,
+      "oom_killed": false,
+      "exit_code": 0,
+      "restart_count": 0,
+      "gpu_util_pct": 38.0,
+      "power_w": 14.19,
+      "temp_c": 53.0
+    },
+    {
+      "i": 6,
+      "time_utc": "2026-08-21T07:58:59.858827+00:00",
+      "health_status": 200,
+      "running": true,
+      "oom_killed": false,
+      "exit_code": 0,
+      "restart_count": 0,
+      "gpu_util_pct": 0.0,
+      "power_w": 14.27,
+      "temp_c": 53.0
+    },
+    {
+      "i": 7,
+      "time_utc": "2026-08-21T07:59:15.907468+00:00",
+      "health_status": 200,
+      "running": true,
+      "oom_killed": false,
+      "exit_code": 0,
+      "restart_count": 0,
+      "gpu_util_pct": 0.0,
+      "power_w": 13.84,
+      "temp_c": 52.0
+    },
+    {
+      "i": 8,
+      "time_utc": "2026-08-21T07:59:31.971049+00:00",
+      "health_status": 200,
+      "running": true,
+      "oom_killed": false,
+      "exit_code": 0,
+      "restart_count": 0,
+      "gpu_util_pct": 0.0,
+      "power_w": 14.13,
+      "temp_c": 52.0
+    },
+    {
+      "i": 9,
+      "time_utc": "2026-08-21T07:59:48.022568+00:00",
+      "health_status": 200,
+      "running": true,
+      "oom_killed": false,
+      "exit_code": 0,
+      "restart_count": 0,
+      "gpu_util_pct": 0.0,
+      "power_w": 13.97,
+      "temp_c": 51.0
+    },
+    {
+      "i": 10,
+      "time_utc": "2026-08-21T08:00:04.075695+00:00",
+      "health_status": 200,
+      "running": true,
+      "oom_killed": false,
+      "exit_code": 0,
+      "restart_count": 0,
+      "gpu_util_pct": 0.0,
+      "power_w": 13.99,
+      "temp_c": 51.0
+    },
+    {
+      "i": 11,
+      "time_utc": "2026-08-21T08:00:20.127057+00:00",
+      "health_status": 200,
+      "running": true,
+      "oom_killed": false,
+      "exit_code": 0,
+      "restart_count": 0,
+      "gpu_util_pct": 0.0,
+      "power_w": 13.76,
+      "temp_c": 50.0
+    },
+    {
+      "i": 12,
+      "time_utc": "2026-08-21T08:00:36.185742+00:00",
+      "health_status": 200,
+      "running": true,
+      "oom_killed": false,
+      "exit_code": 0,
+      "restart_count": 0,
+      "gpu_util_pct": 0.0,
+      "power_w": 13.84,
+      "temp_c": 50.0
+    }
+  ],
+  "passed": true
+}

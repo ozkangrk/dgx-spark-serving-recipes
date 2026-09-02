@@ -1,0 +1,26 @@
+# benchmark artifacts (regenerate with the harness; not archived here)
+bench-results/gen_*.json
+bench-results/exec_*.json
+*.log
+
+# runtime state
+runtime/cache/
+runtime/ple/
+runtime/triton-cache*/
+data/
+hf-hub/
+cache/
+compose.yml
+
+# local env / secrets — never commit
+.env
+.env.*
+*.token
+*.key
+hf-verify.json
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/

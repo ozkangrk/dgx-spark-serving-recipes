@@ -1,0 +1,38 @@
+{
+  "captured_at": "2026-09-02T14:31:36+03:00",
+  "incumbent": {
+    "container": "qwen38-radixark-dflash2-4x128k",
+    "container_id": "2b43251c19b29325c03cccca73bae27f0c7fb2ee2b591791e77b37e9f4c7a1a8",
+    "image_id": "sha256:60166a99b6610e2b4b3febbeb6411e4cbc9338e996ab6c80d3339f86a7b5b9c3",
+    "image_digest": "sha256:616a3e97f45191af975896cfa644279096cb31bd408a071c2e99ca7209c3cafe",
+    "target_revision": "554ebba9b5f1b79dc11246341960360e6ef05ef4",
+    "draft_revision": "50307d4c4cde6860d4eee73e2547cd786fe8e8a4",
+    "target_index_sha256": "7aa103a2582b7d26631988de33dea19e8a308ee9c239e8e14feb374af30905e2",
+    "draft_weight_sha256": "67fc76d68dc5a9415511a4f394ef744d67510cd20e93b37cc2cc7d28e4bab65c",
+    "endpoint": "http://127.0.0.1:8888/v1",
+    "served_model": "qwen38-27b-radixark-dflash2",
+    "restart_count": 0,
+    "oom_killed": false,
+    "settings": {
+      "kv_cache_dtype": "fp8_e4m3",
+      "draft_tokens": 10,
+      "max_running_requests": 4,
+      "max_mamba_cache_size": 20,
+      "max_total_tokens": 1048576,
+      "context_length": 262144
+    }
+  },
+  "candidate": {
+    "launcher": "/home/ozkangu/Desktop/gb10-repo/launch_c3_draft16_bf16kv.sh",
+    "container": "qwen38-radixark-dflash2-c3-fastlane",
+    "settings": {
+      "kv_cache_dtype": "bfloat16",
+      "draft_tokens": 16,
+      "max_running_requests": 3,
+      "max_mamba_cache_size": 15,
+      "max_total_tokens": 524288,
+      "context_length": 262144
+    }
+  },
+  "rollback": "docker update --restart=unless-stopped qwen38-radixark-dflash2-4x128k && docker start qwen38-radixark-dflash2-4x128k"
+}

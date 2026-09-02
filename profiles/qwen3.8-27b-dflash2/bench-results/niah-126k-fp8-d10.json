@@ -1,0 +1,48 @@
+{
+  "protocol": {
+    "id": "NIAH_MAX_CONTEXT",
+    "label": "LOCAL_DFLASH2_126K_FP8_D10",
+    "native_max_position_embeddings": 262144,
+    "served_max_model_len": 262144,
+    "generation_reserve": 64,
+    "depth_source": "explicit",
+    "fractions": null,
+    "matches_native_capacity": true,
+    "description": "MAX CONTEXT TEST: three needle depths at fixed fractions of the served max_model_len (discovered from /v1/models). When served M equals native max_position_embeddings, this stresses full model context capacity."
+  },
+  "model": "qwen38-27b-dflash2-256k",
+  "base_url": "http://127.0.0.1:8888/v1",
+  "tokenizer": "models/target",
+  "depths": [
+    126000
+  ],
+  "max_tokens": 64,
+  "needle_fraction": 0.5,
+  "code": "QWEN38-NIAH-9X4K",
+  "rows": [
+    {
+      "depth": 126000,
+      "status": "OK",
+      "http_status": 200,
+      "prompt_tokens_constructed": 126000,
+      "prompt_sha256": "24935e1d93e07c6defc89600dfe9ae71a9b6e672662b39b1cf9007ca73817b32",
+      "needle_token_offset": 62989,
+      "needle_fraction_effective": 0.4999126984126984,
+      "needle_code": "QWEN38-NIAH-9X4K",
+      "elapsed_s": 159.71892198800015,
+      "response_text": "QWEN38-NIAH-9X4K",
+      "passed": true,
+      "usage": {
+        "prompt_tokens": 126000,
+        "total_tokens": 126014,
+        "completion_tokens": 14,
+        "prompt_tokens_details": null,
+        "reasoning_tokens": 0
+      },
+      "error": null
+    }
+  ],
+  "all_passed": true,
+  "pass_count": 1,
+  "total": 1
+}

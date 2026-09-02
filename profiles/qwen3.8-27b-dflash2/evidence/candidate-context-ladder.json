@@ -1,0 +1,181 @@
+{
+  "model": "qwen38-27b-radixark-dflash2",
+  "repeats": 4,
+  "summary": {
+    "320": {
+      "prompt_tokens_median": 418.5,
+      "decode_tok_s_median": 71.5,
+      "ttft_s_median": 0.29,
+      "prefill_tok_s_median": 1426.27,
+      "all_512": true
+    },
+    "8000": {
+      "prompt_tokens_median": 8483.0,
+      "decode_tok_s_median": 69.94,
+      "ttft_s_median": 4.261,
+      "prefill_tok_s_median": 1990.51,
+      "all_512": true
+    },
+    "65000": {
+      "prompt_tokens_median": 68268.0,
+      "decode_tok_s_median": 54.06,
+      "ttft_s_median": 44.024,
+      "prefill_tok_s_median": 1550.71,
+      "all_512": true
+    }
+  },
+  "cache_pair_65k": {
+    "first": {
+      "prompt_tokens": 68317,
+      "completion_tokens": 512,
+      "finish_reason": "length",
+      "ttft_s": 44.0665,
+      "prefill_tok_s": 1550.31,
+      "decode_tok_s": 58.44,
+      "e2e_s": 52.8112
+    },
+    "second": {
+      "prompt_tokens": 68317,
+      "completion_tokens": 512,
+      "finish_reason": "length",
+      "ttft_s": 0.6466,
+      "prefill_tok_s": 105658.36,
+      "decode_tok_s": 54.41,
+      "e2e_s": 10.0379
+    }
+  },
+  "rows": [
+    {
+      "prompt_tokens": 416,
+      "completion_tokens": 512,
+      "finish_reason": "length",
+      "ttft_s": 0.2901,
+      "prefill_tok_s": 1433.99,
+      "decode_tok_s": 73.27,
+      "e2e_s": 7.2641,
+      "target_depth": 320,
+      "repeat": 0
+    },
+    {
+      "prompt_tokens": 422,
+      "completion_tokens": 512,
+      "finish_reason": "length",
+      "ttft_s": 0.2975,
+      "prefill_tok_s": 1418.55,
+      "decode_tok_s": 79.47,
+      "e2e_s": 6.728,
+      "target_depth": 320,
+      "repeat": 1
+    },
+    {
+      "prompt_tokens": 421,
+      "completion_tokens": 512,
+      "finish_reason": "length",
+      "ttft_s": 0.2904,
+      "prefill_tok_s": 1449.63,
+      "decode_tok_s": 65.7,
+      "e2e_s": 8.0679,
+      "target_depth": 320,
+      "repeat": 2
+    },
+    {
+      "prompt_tokens": 395,
+      "completion_tokens": 512,
+      "finish_reason": "length",
+      "ttft_s": 0.2836,
+      "prefill_tok_s": 1392.88,
+      "decode_tok_s": 69.74,
+      "e2e_s": 7.6104,
+      "target_depth": 320,
+      "repeat": 3
+    },
+    {
+      "prompt_tokens": 8493,
+      "completion_tokens": 512,
+      "finish_reason": "length",
+      "ttft_s": 4.2607,
+      "prefill_tok_s": 1993.34,
+      "decode_tok_s": 52.97,
+      "e2e_s": 13.9071,
+      "target_depth": 8000,
+      "repeat": 0
+    },
+    {
+      "prompt_tokens": 8473,
+      "completion_tokens": 512,
+      "finish_reason": "length",
+      "ttft_s": 4.2628,
+      "prefill_tok_s": 1987.68,
+      "decode_tok_s": 73.74,
+      "e2e_s": 11.1927,
+      "target_depth": 8000,
+      "repeat": 1
+    },
+    {
+      "prompt_tokens": 8450,
+      "completion_tokens": 512,
+      "finish_reason": "length",
+      "ttft_s": 4.258,
+      "prefill_tok_s": 1984.51,
+      "decode_tok_s": 76.25,
+      "e2e_s": 10.9599,
+      "target_depth": 8000,
+      "repeat": 2
+    },
+    {
+      "prompt_tokens": 8500,
+      "completion_tokens": 512,
+      "finish_reason": "length",
+      "ttft_s": 4.2612,
+      "prefill_tok_s": 1994.74,
+      "decode_tok_s": 66.15,
+      "e2e_s": 11.9859,
+      "target_depth": 8000,
+      "repeat": 3
+    },
+    {
+      "prompt_tokens": 68405,
+      "completion_tokens": 512,
+      "finish_reason": "length",
+      "ttft_s": 44.1304,
+      "prefill_tok_s": 1550.06,
+      "decode_tok_s": 42.52,
+      "e2e_s": 56.1485,
+      "target_depth": 65000,
+      "repeat": 0
+    },
+    {
+      "prompt_tokens": 68126,
+      "completion_tokens": 512,
+      "finish_reason": "length",
+      "ttft_s": 43.8699,
+      "prefill_tok_s": 1552.91,
+      "decode_tok_s": 55.92,
+      "e2e_s": 53.0084,
+      "target_depth": 65000,
+      "repeat": 1
+    },
+    {
+      "prompt_tokens": 68131,
+      "completion_tokens": 512,
+      "finish_reason": "length",
+      "ttft_s": 43.9167,
+      "prefill_tok_s": 1551.37,
+      "decode_tok_s": 52.97,
+      "e2e_s": 53.5639,
+      "target_depth": 65000,
+      "repeat": 2
+    },
+    {
+      "prompt_tokens": 68611,
+      "completion_tokens": 512,
+      "finish_reason": "length",
+      "ttft_s": 44.3707,
+      "prefill_tok_s": 1546.31,
+      "decode_tok_s": 55.15,
+      "e2e_s": 53.6361,
+      "target_depth": 65000,
+      "repeat": 3
+    }
+  ]
+}
