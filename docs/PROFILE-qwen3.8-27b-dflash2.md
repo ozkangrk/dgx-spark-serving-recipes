@@ -15,10 +15,19 @@ see step 6.
 **NVFP4 beats FP8, and SGLang beats vLLM, on this hardware.** The widely-shared
 "FP8 on vLLM at ~32 tok/s" recipe is roughly half this speed.
 
-Reproduce with [`bench/`](bench/). Full data in
-[`results/RESULTS.md`](results/RESULTS.md). The exact
+The numbers are my measurements. They were produced with Mia AI Lab's
+[Qwen3.8-27B-SGLang-DGX-Spark](https://github.com/MiaAI-Lab/Qwen3.8-27B-SGLang-DGX-Spark)
+toolkit (`start-dflash.sh`, SGLang overlay, NVFP4 head patch), z-lab's DFlash2
+draft and RadixArk's NVFP4 target; pins are in the table below.
+
+Reproduce with [`bench/`](../bench/). Full data in
+[`RESULTS.md`](RESULTS.md). The exact
 build inputs behind those numbers are in
-[`results/BUILD-MANIFEST.md`](results/BUILD-MANIFEST.md).
+[`BUILD-MANIFEST.md`](BUILD-MANIFEST.md).
+
+The helper scripts (`scripts/`) and patch notes (`patches/`) that accompanied
+the original write-up are not part of this repository; the steps that used
+them say so.
 
 ## Ingredients
 
@@ -38,7 +47,7 @@ kernel 6.17-nvidia, driver 580.173.02 / CUDA 13.0, Docker 29.2.1, 128 GB unified
 ## 1. Verify GPU passthrough
 
 ```bash
-./scripts/00-verify-gpu.sh
+./scripts/00-verify-gpu.sh          # helper not included in this repo
 ```
 
 DGX OS ships CDI, not a registered Docker runtime — `docker info` showing only
@@ -47,8 +56,11 @@ DGX OS ships CDI, not a registered Docker runtime — `docker info` showing only
 ## 2. Pull the image, fetch the weights
 
 ```bash
-./scripts/01-build-and-fetch.sh     # pulls the official image + weights
+./scripts/01-build-and-fetch.sh     # pulls the official image + weights (helper not included in this repo)
 ```
+
+Without the helper, pull the image and download the weights at the revisions
+in the Ingredients table and [`BUILD-MANIFEST.md`](BUILD-MANIFEST.md).
 
 LMSYS published official DFlash2 images on 2026-08-22: `dev-cu13-qwen38-27b-dflash2`,
 `dev-qwen38-27b-dflash2`, `dev-cu12-qwen38-27b-dflash2`, arm64 included. Only the
@@ -56,7 +68,8 @@ LMSYS published official DFlash2 images on 2026-08-22: `dev-cu13-qwen38-27b-dfla
 
 ## 3. Run standalone, get a baseline
 
-Get a number before adding orchestration.
+Get a number before adding orchestration. Run this from a checkout of Mia AI
+Lab's toolkit at `c90d8c34`.
 
 ```bash
 cd ~/spark/Qwen3.8-27B-SGLang-DGX-Spark   # required: start.sh uses WORK_DIR="$(pwd)"
@@ -127,7 +140,7 @@ co-limiting** — raising only the obvious one measures nothing.
 pool allows and the 24/32 rows are queueing against it.
 
 A larger pool does raise aggregate — we measured **474.0 tok/s at 32 streams**
-with pool 160, against 362.7 at pool 80. [An independent run](results/REPRODUCTION.md)
+with pool 160, against 362.7 at pool 80. [An independent run](REPRODUCTION.md)
 reports higher still (606.4 at pool 160, 640.9 at pool 240 with cap 48); we did
 not reproduce those magnitudes, see that file for why.
 
@@ -139,14 +152,14 @@ pool 160 as the practical ceiling.
 Leave `--max-total-tokens 1048576` in place: uncapping it grows the KV pool but
 nothing uses the space, and the lost headroom cost 18% at 32 streams.
 
-Costs ~5% single-stream and 11.8 GB of GDN state. Details in
-[`patches/sparkstation-models.yaml.md`](patches/sparkstation-models.yaml.md).
+Costs ~5% single-stream and 11.8 GB of GDN state. (The patch notes for this
+`models.yaml` edit are not included in this repo; the diff above is the change.)
 
 ## 6. Tune draft tokens — the largest single-stream lever
 
 `--speculative-num-draft-tokens` ships at 8. The measured optimum is ~16,
 worth **+28%** single-stream. A second machine measured +41.6%; our 78.6 is
-probably the low end of the spread. See [RESULTS](results/RESULTS.md#draft-tokens).
+probably the low end of the spread. See [RESULTS](RESULTS.md#draft-tokens).
 
 | draft | single | agg @16 | accept_len | accept_rate |
 |---:|---:|---:|---:|---:|
@@ -171,6 +184,12 @@ rejected. `accept_rate` collapses from 0.80 to 0.32.
 ./scripts/run-humaneval.sh          # thinking off, ~5 min
 ./scripts/run-humaneval.sh think    # thinking on,  ~20 min
 ```
+
+That wrapper is not included in this repo. It chained
+[`bench/humaneval/generate.py`](../bench/humaneval/generate.py),
+[`execute.py`](../bench/humaneval/execute.py) (inside a `--network none`
+container) and [`report.py`](../bench/humaneval/report.py); each file's
+docstring gives the command to run it on its own.
 
 164 problems at temperature 0, each executed against its real unit tests in a
 `--network none` container. Real pass@1, not self-judged.
@@ -223,7 +242,7 @@ Each of these cost real time.
   nothing — the console script imports from `.venv/bin`. Copy it across too.
 - **Gateway reports "not healthy" while working.** `_gateway_healthy()`
   hardcodes `Bearer dummy-key`, so a custom `LITELLM_MASTER_KEY` gets HTTP 400.
-  Patch in [`patches/`](patches/).
+  Patch it to send the configured key (the patch is not included in this repo).
 - **Only the FLUX launcher forwards `HF_TOKEN`.** A gated model can't
   authenticate its own download; pre-pull on the host.
 - **Never `docker rm -f` a managed container.** The supervisor's state goes
@@ -242,23 +261,29 @@ Each of these cost real time.
 
 ## Layout
 
+In this repository:
+
 ```
 bench/     common.py · perf.py · longctx.py · humaneval/{generate,execute,report}.py
-scripts/   00-verify-gpu · 01-build-and-fetch · build-manifest · run-humaneval
-patches/   models.yaml edits · gateway-health fix
-results/   RESULTS.md — all measurements
+docs/      RESULTS.md — all measurements
            BUILD-MANIFEST.md — resolved build inputs for those numbers
+           REPRODUCTION.md — the second-machine reproduction
+profiles/qwen3.8-27b-dflash2/   launchers · gates · bench-results · frozen A/B evidence
 ```
 
-Scripts read `GB10_BASE_URL`, `GB10_API_KEY`, `GB10_MODEL` from the environment
-(see [`.env.example`](.env.example)); nothing is baked in.
+The `scripts/` and `patches/` directories of the original write-up are not
+included.
+
+The bench scripts read `GB10_BASE_URL`, `GB10_API_KEY`, `GB10_MODEL` from the
+environment (see the docstring in [`bench/common.py`](../bench/common.py));
+nothing is baked in.
 
 ## Caveats
 
 Throughput figures are code generation at temperature 0 on short prompts.
 Long-context behaves very differently — a ~120K-token prompt costs ~95 s before
 the first token (full prefill curve in
-[`results/RESULTS.md`](results/RESULTS.md)). Single machine; treat the ordering
+[`RESULTS.md`](RESULTS.md)). Single machine; treat the ordering
 of findings as durable and absolute numbers as indicative.
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](../LICENSE).

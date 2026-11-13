@@ -6,9 +6,10 @@ and notes on where two-node clusters become necessary.
 
 Every profile under [`profiles/`](profiles/) is a **working deployment**:
 launch scripts, health/wait gates, quality gates, and the benchmark data
-that justifies the chosen operating point. Numbers are first-party
-measurements on the hardware listed in each profile; nothing is quoted
-from tweets or model cards without an independent local reproduction.
+that justifies the chosen operating point. Not every profile is my own
+work and not every number is my measurement: see [Provenance](#provenance)
+and [Credits](#credits) for who built and measured what. Figures from
+tweets, forums or model cards are labelled as third-party where they appear.
 
 ## Hardware reality (why these recipes look the way they do)
 
@@ -24,17 +25,19 @@ serving are compute-bound and scale well. Consequences:
 - Batch amortizes the bandwidth tax: the same engine that gives 20 tok/s
   at batch 1 can serve hundreds of tok/s aggregate at batch 16+.
 
-See [`docs/nvfp4-serving-guide.md`](docs/nvfp4-serving-guide.md) for the
-full per-model decision table (which model fits one Spark, expected
-decode rates, quantization notes).
+See [`docs/nvfp4-serving-guide.md`](docs/nvfp4-serving-guide.md) for a
+per-model decision table (which model fits one Spark, expected decode
+rates, quantization notes). It is desk research in Turkish, compiled from
+model cards and community reports: its figures are third-party, not
+measurements from this repo.
 
 ## Profiles
 
 | Profile | Engine | Quant | Context | Why it exists |
 |---|---|---|---|---|
-| [`qwen3.8-27b-dflash2`](profiles/qwen3.8-27b-dflash2/) | SGLang + DFlash2 spec-decode | NVFP4 target + BF16 draft | 256K | Flagship: fastest measured Qwen3.8-27B setup on GB10 (78.6 tok/s single-stream, 480.7 tok/s @16 streams, HumanEval 97.0%). Includes frozen A/B evidence for draft-width/KV-dtype operating points. |
-| [`deepseek-v4-flash-exl3`](profiles/deepseek-v4-flash-exl3/) | ExLlamaV3 (EXL3) | NVFP4 KV records | 384K single request | Deep-context: 439K-token pool on ONE Spark, auto-download launcher, TP1 coalesced checkpoint. The 157 GB model that does not fit one box, made to fit. |
-| [`qwen3.8-flash-next`](profiles/qwen3.8-flash-next/) | SGLang (derived image) | NVFP4 | 64K/128K/256K variants | Launch matrix for PLE/KDA attention variants incl. FP8-KV trade study; boot-interrupt-safe PLE materialization. |
+| [`qwen3.8-27b-dflash2`](profiles/qwen3.8-27b-dflash2/) | SGLang + DFlash2 spec-decode | NVFP4 target + BF16 draft | 256K | Flagship: the fastest Qwen3.8-27B setup I measured on GB10 (78.6 tok/s single-stream at draft 16, 480.7 tok/s @16 streams at draft 8, HumanEval 97.0%). Includes frozen A/B evidence for draft-width/KV-dtype operating points. My measurements, made with Mia AI Lab's toolkit, z-lab's DFlash2 draft and RadixArk's NVFP4 target. |
+| [`deepseek-v4-flash-exl3`](profiles/deepseek-v4-flash-exl3/) | ExLlamaV3 (EXL3) | NVFP4 KV records | 384K single request | **By Mia AI Lab** (recipe and numbers are theirs; see its README). Deep-context: 439K-token pool on ONE Spark, auto-download launcher, TP1 coalesced checkpoint. The 157 GB model that does not fit one box, made to fit. |
+| [`qwen3.8-flash-next`](profiles/qwen3.8-flash-next/) | SGLang (derived image) | NVFP4 | 64K/128K/256K variants | Launch matrix for PLE/KDA attention variants incl. FP8-KV trade study; boot-interrupt-safe PLE materialization. Adapted from hasso5703's SGLang recipe; serves RadixArk's NVFP4 checkpoint. |
 
 ## Shared benchmark harness
 
@@ -57,9 +60,24 @@ unique per stream or the radix cache measures itself; assert
 
 ## Provenance
 
-- All figures in `profiles/*/bench-results` and `profiles/*/evidence`
-  are first-party runs on DGX Spark hardware by the repo author, with
-  pinned model revisions and container digests recorded in each profile.
+- **Qwen3.8-27B** (`profiles/qwen3.8-27b-dflash2/`, `docs/RESULTS.md`,
+  `docs/PROFILE-qwen3.8-27b-dflash2.md`): my own runs on one DGX Spark,
+  with pinned model revisions and container digests recorded in the
+  profile and in [`docs/BUILD-MANIFEST.md`](docs/BUILD-MANIFEST.md). The
+  numbers in `docs/RESULTS.md` were produced with Mia AI Lab's toolkit,
+  z-lab's DFlash2 draft and RadixArk's NVFP4 target; some files in the
+  profile's `bench-results/` come from an earlier deployment built on
+  r0b0tlab's bundle (see [Credits](#credits)).
+- **DeepSeek-V4-Flash** (`profiles/deepseek-v4-flash-exl3/`): Mia AI
+  Lab's recipe, included with its own README. Its measured results are
+  Mia AI Lab's, not mine.
+- **Qwen3.8-Flash-Next** (`profiles/qwen3.8-flash-next/`): launch scripts
+  adapted from hasso5703's SGLang recipe (`hasso5703/dgx-spark-qwen38` at
+  `e8d6c6cc`, the `source-commit` label in `launch.sh`), serving RadixArk's
+  NVFP4 checkpoint (the `model-revision` label). The Flash-Next
+  figures on the one-pager are my measurements.
+- [`docs/REPRODUCTION.md`](docs/REPRODUCTION.md) reports a reproduction of
+  the Qwen3.8-27B numbers on a second DGX Spark.
 - Frozen A/B evidence (`profiles/qwen3.8-27b-dflash2/evidence/`) keeps
   raw JSON plus the harness scripts that produced it; known-invalid runs
   are excluded and the exclusion is documented in its `REPORT.md`.
@@ -75,6 +93,30 @@ unique per stream or the radix cache measures itself; assert
   repo; launchers fetch or reference them locally)
 - No cloud account, no API keys: everything runs locally.
 
+## Credits
+
+This repo builds on other people's work:
+
+- **Mia AI Lab** ([@MiaAI_lab](https://x.com/MiaAI_lab)): the whole
+  DeepSeek-V4-Flash EXL3 profile (recipe, launcher, image patches and its
+  measured results; its README lists its own credits), and the
+  [Qwen3.8-27B-SGLang-DGX-Spark](https://github.com/MiaAI-Lab/Qwen3.8-27B-SGLang-DGX-Spark)
+  toolkit at commit `c90d8c34` (`start-dflash.sh`, SGLang overlay, NVFP4
+  head patch), with which my Qwen3.8-27B numbers were produced.
+- **z-lab**: the DFlash2 draft model `z-lab/Qwen3.8-27B-DFlash2`.
+- **RadixArk**: the NVFP4 checkpoints `RadixArk/Qwen3.8-27B-NVFP4` (the
+  Qwen3.8-27B target) and the Qwen3.8-Flash-Next checkpoint served by
+  `profiles/qwen3.8-flash-next/`.
+- **LMSYS / SGLang**: the serving engine and the official DFlash2 images.
+- **hasso5703**: the SGLang Qwen3.8 recipe the Flash-Next launch matrix is
+  adapted from, and a reference figure in `docs/RESULTS.md`.
+- **r0b0tlab**: the SGLang bundle and `r0b0tlab/Qwen3.8-27B-NVFP4-MTP-sm121`
+  target behind the earlier deployment documented in
+  `profiles/qwen3.8-27b-dflash2/docs/`.
+- **SparkStation** ([kshetrajna12/sparkstation](https://github.com/kshetrajna12/sparkstation)):
+  the orchestration layer in the Qwen3.8-27B write-up.
+
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE). Third-party material in this repo (see
+[Credits](#credits)) stays under its authors' terms.

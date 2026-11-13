@@ -35,8 +35,8 @@ any amount of re-benchmarking.
 
 ## Which inputs are pinned, and which are not
 
-Pinned by the scripts in this repo: target revision, draft revision, toolkit
-commit.
+Pinned by the original launch scripts (not included in this repo): target
+revision, draft revision, toolkit commit.
 
 Pinned by the toolkit itself: the SGLang commit and the NVFP4 head patch.
 
@@ -46,7 +46,8 @@ build date. If `lmsysorg/sglang:qwen38-27b` is republished, a rebuild produces a
 different image than the one benchmarked here, and nothing in the build will
 warn you.
 
-Regenerate this table with [`scripts/build-manifest.sh`](../scripts/build-manifest.sh).
+The script that generated this table (`scripts/build-manifest.sh`) is not
+included in this repo.
 
 ## Image note
 
