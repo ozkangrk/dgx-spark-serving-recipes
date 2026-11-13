@@ -91,7 +91,7 @@
 <header>
   <div>
     <div class="h-title">Large-Model Serving on <span class="grn">One DGX Spark</span></div>
-    <div class="h-sub">Three measured, reproducible recipes — <b>SGLang · ExLlamaV3 · NVFP4 · speculative decoding</b> — every number from runs on this desk, not from model cards.</div>
+    <div class="h-sub">Three measured, reproducible recipes — <b>SGLang · ExLlamaV3 · NVFP4 · speculative decoding</b> — Qwen numbers from runs on my desk; DeepSeek recipe and numbers by Mia AI Lab.</div>
   </div>
   <div class="h-repo">
     <div class="url">github.com/ozkangrk/dgx-spark-serving-recipes</div>
@@ -178,11 +178,11 @@
           <div class="p-name">Qwen3.8-27B · DFlash2</div>
           <div class="p-engine">SGLANG + NVFP4 + SPEC-DECODE</div>
         </div>
-        <div class="p-why">Fastest measured 27B setup on GB10. Frozen A/B evidence for the operating point: <b>draft-16 + BF16 KV</b> beats draft-10 + FP8 KV at C1/C2 latency (+7.9% / +17.3%); radix prefix reuse cuts a 68K-token TTFT from <b>44 s → 0.65 s</b> (68×).</div>
+        <div class="p-why">The fastest 27B setup I measured on GB10, built with Mia AI Lab's toolkit, z-lab's DFlash2 draft and RadixArk's NVFP4 target. Frozen A/B evidence for the operating point: <b>draft-16 + BF16 KV</b> beats draft-10 + FP8 KV at C1/C2 latency (+7.9% / +17.3%); radix prefix reuse cuts a 68K-token TTFT from <b>44 s → 0.65 s</b> (68×).</div>
       </div>
       <div class="metrics">
-        <div class="m"><div class="n grn">78.6</div><div class="l">tok/s single-stream</div></div>
-        <div class="m"><div class="n grn">480.7</div><div class="l">tok/s @16 streams</div></div>
+        <div class="m"><div class="n grn">78.6</div><div class="l">tok/s 1 stream · draft 16</div></div>
+        <div class="m"><div class="n grn">480.7</div><div class="l">tok/s @16 · draft 8</div></div>
         <div class="m"><div class="n">190 <span class="u">ms</span></div><div class="l">TTFT</div></div>
         <div class="m"><div class="n grn">97.0<span class="u">%</span></div><div class="l">HumanEval pass@1</div></div>
         <div class="m"><div class="n">256<span class="u">K</span></div><div class="l">context / request</div></div>
@@ -196,7 +196,7 @@
           <div class="p-name">DeepSeek-V4-Flash · EXL3</div>
           <div class="p-engine amber">EXLLAMAV3 · DEEP-CONTEXT</div>
         </div>
-        <div class="p-why">The <b>157 GB model that should not fit</b> — TP1-coalesced checkpoint on one box. <b>384K-token single request</b>, stress-tested at 370K with exact needle recall and zero preemptions.</div>
+        <div class="p-why"><b>Recipe and numbers by Mia AI Lab.</b> The <b>157 GB model that should not fit</b> — TP1-coalesced checkpoint on one box. <b>384K-token single request</b>, stress-tested at 370K with exact needle recall and zero preemptions.</div>
       </div>
       <div class="metrics">
         <div class="m"><div class="n am">384<span class="u">K</span></div><div class="l">single-request ctx</div></div>
@@ -214,7 +214,7 @@
           <div class="p-name">Qwen3.8-Flash-Next · PLE/KDA</div>
           <div class="p-engine blue">SGLANG · LAUNCH MATRIX</div>
         </div>
-        <div class="p-why">Derived-image launch matrix (64K/128K/262K, FP8-KV trade study) with boot-interrupt-safe PLE materialization. <b>SGLang 128K vs vLLM 256K:</b> code edit <b>45.5 vs 33.1</b>, reasoning <b>43.9 vs 34.1</b> tok/s — same hardware, same model, engine matters.</div>
+        <div class="p-why">Derived-image launch matrix adapted from hasso5703's SGLang recipe, on RadixArk's NVFP4 checkpoint (64K/128K/262K, FP8-KV trade study) with boot-interrupt-safe PLE materialization. <b>SGLang 128K vs vLLM 256K:</b> code edit <b>45.5 vs 33.1</b>, reasoning <b>43.9 vs 34.1</b> tok/s — same hardware, same model, engine matters.</div>
       </div>
       <div class="metrics c4">
         <div class="m"><div class="n bl">262<span class="u">K</span></div><div class="l">max context</div></div>
