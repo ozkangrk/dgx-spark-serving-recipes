@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# Copied from darkdatter/gb10-repo at commit 2db1ecd (bench/humaneval/report.py):
+#   https://github.com/darkdatter/gb10-repo
+# Copyright (c) 2026 gb10-repo contributors
+# MIT License; full text in LICENSES/darkdatter-gb10-repo-MIT.txt.
+# Unchanged except this header.
 """Summarise an execution result, separating real errors from truncation.
 
     python3 bench/humaneval/report.py results/exec_nothink.json [results/gen_nothink.json]

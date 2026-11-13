@@ -1,3 +1,11 @@
+> **Provenance note (added in this repo).** This file is copied from
+> [darkdatter/gb10-repo](https://github.com/darkdatter/gb10-repo) (`results/RESULTS.md` at commit `2db1ecd`,
+> MIT licence, copy in [`LICENSES/darkdatter-gb10-repo-MIT.txt`](../LICENSES/darkdatter-gb10-repo-MIT.txt)).
+> The measurements are **darkdatter's**, made on darkdatter's ASUS DGX Spark,
+> not on this repo author's machine; "here" and "we" below mean darkdatter.
+> Figures attributed to a "second machine" are kosztyua's reproduction
+> ([darkdatter/gb10-repo#1](https://github.com/darkdatter/gb10-repo/pull/1)). Everything below this note is unchanged.
+
 # Measured results
 
 One ASUS DGX Spark, August 2026, box otherwise idle for every figure.

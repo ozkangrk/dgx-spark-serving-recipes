@@ -1,3 +1,8 @@
+# Copied from darkdatter/gb10-repo at commit 2db1ecd (bench/common.py):
+#   https://github.com/darkdatter/gb10-repo
+# Copyright (c) 2026 gb10-repo contributors
+# MIT License; full text in LICENSES/darkdatter-gb10-repo-MIT.txt.
+# Unchanged except this header and the correction marked in chat()'s docstring.
 """Shared client helpers for the GB10 benchmark scripts.
 
 Endpoint and key come from the environment so nothing is baked in:
@@ -37,7 +42,11 @@ def chat(prompt, max_tokens, thinking=False, stream=False, timeout=3600):
     Returns a dict with e2e seconds, completion/prompt token counts, and (when
     streaming) ttft. Always count `completion_tokens` over wall time rather than
     counting SSE events: DFlash2 emits ~3.75 tokens per event, so event-counting
-    inflates the rate by roughly 4x.
+    under-reads the rate by roughly 3.75x.
+
+    [Correction in this copy, 2026-11-13: upstream says event-counting
+    "inflates the rate by roughly 4x". Counting each event as one token
+    under-counts tokens, so it under-reads throughput.]
     """
     body = {
         "model": MODEL,

@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# Copied from darkdatter/gb10-repo at commit 2db1ecd (bench/longctx.py):
+#   https://github.com/darkdatter/gb10-repo
+# Copyright (c) 2026 gb10-repo contributors
+# MIT License; full text in LICENSES/darkdatter-gb10-repo-MIT.txt.
+# Unchanged except this header.
 """Concurrent long-context test.
 
     python3 bench/longctx.py

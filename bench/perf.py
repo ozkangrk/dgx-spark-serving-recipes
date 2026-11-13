@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# Copied from darkdatter/gb10-repo at commit 2db1ecd (bench/perf.py):
+#   https://github.com/darkdatter/gb10-repo
+# Copyright (c) 2026 gb10-repo contributors
+# MIT License; full text in LICENSES/darkdatter-gb10-repo-MIT.txt.
+# Unchanged except this header.
 """Full performance suite: TTFT, single-stream decode, concurrency, prefill.
 
     python3 bench/perf.py

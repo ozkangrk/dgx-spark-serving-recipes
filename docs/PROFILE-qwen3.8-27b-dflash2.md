@@ -1,5 +1,22 @@
 # Qwen3.8-27B on DGX Spark (GB10)
 
+> **Adapted from darkdatter's README.** This page is the README of
+> [darkdatter/gb10-repo](https://github.com/darkdatter/gb10-repo) at commit
+> `2db1ecd` (MIT licence, copy in
+> [`LICENSES/darkdatter-gb10-repo-MIT.txt`](../LICENSES/darkdatter-gb10-repo-MIT.txt)).
+> The recipe is **darkdatter's**, and so are the numbers: darkdatter measured
+> them on an ASUS DGX Spark, and "I" and "we" below mean darkdatter. Figures
+> attributed to "a second machine" or "an independent run" are kosztyua's
+> reproduction ([darkdatter/gb10-repo#1](https://github.com/darkdatter/gb10-repo/pull/1)).
+> Edits in this copy: links repointed to this repo; notes that darkdatter's
+> `scripts/` and `patches/` are not included here; the toolkit credit
+> paragraph below the headline table and the toolkit-checkout note in step 3;
+> the corrected event-counting trap; the layout and licence lines at the end.
+> This repo author's own Qwen3.8-27B work (a rerun of this recipe on an NVIDIA
+> DGX Spark on 2026-08-30, and the 2026-09-02 fast-lane A/B evidence in
+> [`profiles/qwen3.8-27b-dflash2/evidence/`](../profiles/qwen3.8-27b-dflash2/evidence/))
+> is listed in the [main README](../README.md#provenance).
+
 A measured recipe for the fastest Qwen3.8-27B setup I could get on a DGX Spark:
 **SGLang + NVFP4 + DFlash2 speculative decoding**, managed by
 [SparkStation](https://github.com/kshetrajna12/sparkstation).
@@ -15,7 +32,7 @@ see step 6.
 **NVFP4 beats FP8, and SGLang beats vLLM, on this hardware.** The widely-shared
 "FP8 on vLLM at ~32 tok/s" recipe is roughly half this speed.
 
-The numbers are my measurements. They were produced with Mia AI Lab's
+The recipe is built on Mia AI Lab's
 [Qwen3.8-27B-SGLang-DGX-Spark](https://github.com/MiaAI-Lab/Qwen3.8-27B-SGLang-DGX-Spark)
 toolkit (`start-dflash.sh`, SGLang overlay, NVFP4 head patch), z-lab's DFlash2
 draft and RadixArk's NVFP4 target; pins are in the table below.
@@ -257,7 +274,10 @@ Each of these cost real time.
   a `finish_reason` check — truncation otherwise reads as a quality regression.
   That mistake made a 97.0% run score 90.9%.
 - **Count `completion_tokens`, not stream events.** DFlash2 emits ~3.75 tokens
-  per event; event-counting inflates throughput ~4×.
+  per event; event-counting under-reads throughput ~3.75×. *(Correction in this
+  copy: darkdatter's original says event-counting "inflates throughput ~4×".
+  Counting each event as one token under-counts tokens, so it under-reads, as
+  Mia AI Lab's toolkit README says.)*
 
 ## Layout
 
@@ -268,7 +288,9 @@ bench/     common.py · perf.py · longctx.py · humaneval/{generate,execute,rep
 docs/      RESULTS.md — all measurements
            BUILD-MANIFEST.md — resolved build inputs for those numbers
            REPRODUCTION.md — the second-machine reproduction
-profiles/qwen3.8-27b-dflash2/   launchers · gates · bench-results · frozen A/B evidence
+profiles/qwen3.8-27b-dflash2/   not from gb10-repo: this repo author's deployment
+                                (launchers · gates · bench-results) and 2026-09-02
+                                fast-lane A/B evidence
 ```
 
 The `scripts/` and `patches/` directories of the original write-up are not
@@ -286,4 +308,5 @@ the first token (full prefill curve in
 [`RESULTS.md`](RESULTS.md)). Single machine; treat the ordering
 of findings as durable and absolute numbers as indicative.
 
-MIT — see [LICENSE](../LICENSE).
+MIT (darkdatter's licence) — see
+[`LICENSES/darkdatter-gb10-repo-MIT.txt`](../LICENSES/darkdatter-gb10-repo-MIT.txt).

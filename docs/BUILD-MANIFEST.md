@@ -1,3 +1,11 @@
+> **Provenance note (added in this repo).** This file is adapted from
+> [darkdatter/gb10-repo](https://github.com/darkdatter/gb10-repo) (`results/BUILD-MANIFEST.md` at commit
+> `2db1ecd`, MIT licence, copy in [`LICENSES/darkdatter-gb10-repo-MIT.txt`](../LICENSES/darkdatter-gb10-repo-MIT.txt)).
+> It records the build inputs and host (darkdatter's ASUS DGX Spark) behind
+> **darkdatter's** measurements in [`RESULTS.md`](RESULTS.md); "ours" below
+> means darkdatter's. The only edits are the two sentences noting that the
+> original scripts are not included in this repo.
+
 # Build manifest
 
 Resolved build configuration for every number in
