@@ -1,3 +1,13 @@
+> **Provenance note (added in this repo).** This file is copied from
+> [darkdatter/gb10-repo](https://github.com/darkdatter/gb10-repo) (`results/REPRODUCTION.md` at commit
+> `2db1ecd`, MIT licence, copy in [`LICENSES/darkdatter-gb10-repo-MIT.txt`](../LICENSES/darkdatter-gb10-repo-MIT.txt)).
+> The reproduction is **kosztyua's**, on a second DGX Spark, contributed as
+> [darkdatter/gb10-repo#1](https://github.com/darkdatter/gb10-repo/pull/1) ("Reproduce on a second GB10; correct image, SSM dtype,
+> concurrency"); "you" and "yours" in it address darkdatter. The last section,
+> "Pool figures: not reproduced here", is **darkdatter's** follow-up check on
+> the original machine. None of it was measured by this repo's author.
+> Everything below this note is unchanged.
+
 # Independent reproduction
 
 Second DGX Spark GB10, 2026-08-23, box idle. Same `bench/perf.py`, same pins.

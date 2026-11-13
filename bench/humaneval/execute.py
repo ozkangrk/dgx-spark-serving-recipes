@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# Copied from darkdatter/gb10-repo at commit 2db1ecd (bench/humaneval/execute.py):
+#   https://github.com/darkdatter/gb10-repo
+# Copyright (c) 2026 gb10-repo contributors
+# MIT License; full text in LICENSES/darkdatter-gb10-repo-MIT.txt.
+# Unchanged except this header.
 """Execute HumanEval candidates against their real unit tests.
 
 RUN THIS INSIDE A SANDBOX. It executes model-generated code. The wrapper in

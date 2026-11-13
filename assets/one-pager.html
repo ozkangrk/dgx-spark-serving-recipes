@@ -91,7 +91,7 @@
 <header>
   <div>
     <div class="h-title">Large-Model Serving on <span class="grn">One DGX Spark</span></div>
-    <div class="h-sub">Three measured, reproducible recipes — <b>SGLang · ExLlamaV3 · NVFP4 · speculative decoding</b> — Qwen numbers from runs on my desk; DeepSeek recipe and numbers by Mia AI Lab.</div>
+    <div class="h-sub">Three measured, reproducible recipes — <b>SGLang · ExLlamaV3 · NVFP4 · speculative decoding</b> — Qwen3.8-27B recipe and headline numbers by darkdatter, DeepSeek by Mia AI Lab; Flash-Next measured on my desk.</div>
   </div>
   <div class="h-repo">
     <div class="url">github.com/ozkangrk/dgx-spark-serving-recipes</div>
@@ -178,7 +178,7 @@
           <div class="p-name">Qwen3.8-27B · DFlash2</div>
           <div class="p-engine">SGLANG + NVFP4 + SPEC-DECODE</div>
         </div>
-        <div class="p-why">The fastest 27B setup I measured on GB10, built with Mia AI Lab's toolkit, z-lab's DFlash2 draft and RadixArk's NVFP4 target. Frozen A/B evidence for the operating point: <b>draft-16 + BF16 KV</b> beats draft-10 + FP8 KV at C1/C2 latency (+7.9% / +17.3%); radix prefix reuse cuts a 68K-token TTFT from <b>44 s → 0.65 s</b> (68×).</div>
+        <div class="p-why"><b>Recipe and measurements by darkdatter</b>, on Mia AI Lab's toolkit, <span style="white-space:nowrap">z-lab's</span> DFlash2 draft and RadixArk's NVFP4 target; rerun on my DGX Spark at 71.7 tok/s single-stream (draft 10). My frozen A/B: <b>draft-16 + BF16 KV</b> beats draft-10 + FP8 KV at C1/C2 (+7.9% / +17.3%); radix prefix reuse cuts a 68K-token TTFT from <b>44 s → 0.65 s</b> (68×).</div>
       </div>
       <div class="metrics">
         <div class="m"><div class="n grn">78.6</div><div class="l">tok/s 1 stream · draft 16</div></div>
@@ -186,7 +186,7 @@
         <div class="m"><div class="n">190 <span class="u">ms</span></div><div class="l">TTFT</div></div>
         <div class="m"><div class="n grn">97.0<span class="u">%</span></div><div class="l">HumanEval pass@1</div></div>
         <div class="m"><div class="n">256<span class="u">K</span></div><div class="l">context / request</div></div>
-        <div class="m"><div class="n">20<span class="u">/20</span></div><div class="l">tool-call gates</div></div>
+        <div class="m"><div class="n">20<span class="u">/20</span></div><div class="l">my tool-call gates</div></div>
       </div>
     </div>
 
@@ -237,7 +237,7 @@
   </div>
   <div class="f-item">
     <div class="f-ico">&gt;_</div>
-    <div class="f-tx"><div class="a">Engine-agnostic harness</div><div class="b">bench/ works on any OpenAI-compatible endpoint. tok/s counted from tokens, not SSE events.</div></div>
+    <div class="f-tx"><div class="a">Engine-agnostic harness</div><div class="b">darkdatter's bench/ works on any OpenAI-compatible endpoint. tok/s counted from tokens, not SSE events.</div></div>
   </div>
   <div class="f-item">
     <div class="f-ico">0</div>
